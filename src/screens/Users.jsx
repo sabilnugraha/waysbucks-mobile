@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios'
 import { FlatList } from 'react-native';
+import { API } from '../config/api';
 
 const Users = ({navigation}) => {
 
@@ -14,7 +15,7 @@ const Users = ({navigation}) => {
         try {
             const token = await AsyncStorage.getItem('token');
             if (token === null) {
-                navigation.navigate("Login")
+                navigation.navigate("Index")
             }
     
             const config = {
@@ -26,7 +27,7 @@ const Users = ({navigation}) => {
     
             setIsLoading(true);
     
-            const res = await axios.get("https://api.kontenbase.com/query/api/v1/e47c10a1-ec97-4a84-988c-3c146b726ef0/Users", config)
+            const res = await API.get("/check-auth", config)
             setData(res.data)
             setIsLoading(false);
         

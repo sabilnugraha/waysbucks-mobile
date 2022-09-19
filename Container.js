@@ -13,6 +13,7 @@ import Login from "./src/screens/Login";
 import DetailList from "./src/screens/Detail-List";
 import { Usercontext } from "./src/context/userContext";
 import { API, setAuthToken } from "./src/config/api";
+import { style } from "styled-system";
 
 
 const Stack = createStackNavigator();
@@ -52,26 +53,30 @@ export default function Container({navigation}) {
 
    const [state, dispatch] = useContext(Usercontext);
 
-   const getData = async() => {
-    try {
-      const token = await AsyncStorage.getItem('token')
-      if (token === null) {
-        navigation.navigate("DetailList")
-      }
+  //  const getData = async() => {
+  //   try {
+  //     const token = await AsyncStorage.getItem('token')
+  //     if (token === null) {
+  //       navigation.navigate("DetailList")
+  //     } else {
+  //       navigation.navigate("BottomTab")
+  //     }
 
-    } catch (error) {
-      console.log(error)
-    }
-   }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  //  }
 
-   useEffect(() => {
-    getData()
-   }, [])
+  //  useEffect(() => {
+  //   getData()
+  //  }, [])
 
   return (
+    
+    
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen name="Landingpages" component={Landingpages} options={{headerShown: false}}/>
+      <Stack.Screen name="Landingpages" component={Landingpages} options={{headerShown: false}} />
       <Stack.Screen name="Index" component={Index} options={{headerShown:false}}/>
       <Stack.Screen name="Register" component={Register} options={{headerShown:false}} />
       <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
@@ -80,5 +85,6 @@ export default function Container({navigation}) {
       
       </Stack.Navigator>
     </NavigationContainer>
+  
   );
 }

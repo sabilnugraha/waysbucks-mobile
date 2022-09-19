@@ -15,7 +15,9 @@ export default function Landingpages({navigation}) {
     try {
       const token = await AsyncStorage.getItem('token');
       if (token === null) {
-        navigation.navigate("Login")
+        navigation.navigate("Index")
+      } else {
+        navigation.navigate("BottomTab")
       }
 
       const config = {
